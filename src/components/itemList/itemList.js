@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './itemList.css';
-import Spinner from "../spinner";
+import Spinner from '../spinner';
 
 export default class ItemList extends Component {
 
@@ -9,10 +9,10 @@ export default class ItemList extends Component {
     }
 
     componentDidMount() {
-        const {getData} = this.props
+        const {getData} = this.props;
 
         getData()
-            .then((itemList) => {
+            .then( (itemList) => {
                 this.setState({
                     itemList
                 })
@@ -21,22 +21,22 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         return arr.map((item) => {
-            const  {id} = item;
+            const {id} = item;
+
             const label = this.props.renderItem(item);
 
             return (
-                <li
+                <li 
                     key={id}
                     className="list-group-item"
-                    onClick={() => this.props.onItemSelected(id)}>
+                    onClick={ () => this.props.onItemSelected(id)}>
                     {label}
                 </li>
-             )
+            )
         })
     }
 
     render() {
-
         const {itemList} = this.state;
 
         if (!itemList) {
@@ -44,6 +44,7 @@ export default class ItemList extends Component {
         }
 
         const items = this.renderItems(itemList);
+
 
         return (
             <ul className="item-list list-group">
